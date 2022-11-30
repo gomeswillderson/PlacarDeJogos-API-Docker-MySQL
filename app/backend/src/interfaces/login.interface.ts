@@ -1,1 +1,4 @@
-// dados que serao passados no login
+export default interface ILogin {
+  email: string;
+  password: string;
+}

@@ -1,1 +1,7 @@
-// dados para passar para funcao que ira gerar o token
+export default interface IUser {
+  id: number;
+  username: string;
+  role: string;
+  email: string;
+  password: string;
+}
