@@ -5,11 +5,19 @@ import ILogin from '../interfaces/login.interface';
 export default class UserController {
   public userService = new UserService();
 
-  async login(req: Request<object, object, ILogin>, res: Response) {
+  public async login(req: Request<object, object, ILogin>, res: Response) {
     const { body } = req;
 
     const token = await this.userService.login(body);
 
     return res.status(200).json({ token });
+  }
+
+  public async validate(req: Request, res: Response) {
+    const token = req.header('Authorization');
+
+    const userRole = await this.userService.validate(token as string);   
+
+    return res.status(200).json({ role: userRole });
   }
 }

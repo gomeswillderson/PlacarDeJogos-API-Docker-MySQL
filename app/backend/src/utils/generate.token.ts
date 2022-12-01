@@ -1,7 +1,5 @@
-import * as jsonwebtoken from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import ILogin from '../interfaces/login.interface';
-
-const jwt = jsonwebtoken;
 
 function generateToken(user: ILogin) {
   const payload = { email: user.email };

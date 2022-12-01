@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
 import User from '../database/models/UserModel';
 import generateToken from '../utils/generate.token';
 import ILogin from '../interfaces/login.interface';
@@ -25,5 +26,18 @@ export default class UserService {
       return generateToken(loginBody);
     }
     throw new HttpException(401, 'Incorrect email or password');
+  }
+
+  public async validate(token: string) {
+    const result = jwt.verify(token, process.env.JWT_SECRET as string) as ILogin;
+    const { email } = result;
+    const user = await User.findOne({ where: { email } });
+
+    this.validate = this.validate.bind(this);
+
+    if (!user) {
+      throw new HttpException(401, 'Unauthorized');
+    }
+    return user.dataValues.role;
   }
 }

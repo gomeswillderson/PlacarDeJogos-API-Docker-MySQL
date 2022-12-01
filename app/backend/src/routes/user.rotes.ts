@@ -7,4 +7,6 @@ const userController = new UserController();
 
 router.post('/login', userController.login.bind(userController));
 
+router.get('/validate', userController.validate.bind(userController));
+
 export default router;
