@@ -13,4 +13,9 @@ export default class MatchController {
     const matchs = await this.matchService.getAll();
     return res.status(200).json(matchs);
   }
+
+  public async insert(req: Request, res: Response) {
+    const newMatch = await this.matchService.insert(req.body);
+    return res.status(201).json(newMatch);
+  }
 }

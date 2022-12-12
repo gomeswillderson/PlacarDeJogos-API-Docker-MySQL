@@ -37,4 +37,10 @@ export default class MatchService {
       ],
     });
   }
+
+  public async insert(data: IMatch): Promise<IMatch> {
+    this.insert = this.insert.bind(this);
+    const addMatch = await Matche.create({ ...data, inProgress: true });
+    return addMatch;
+  }
 }
