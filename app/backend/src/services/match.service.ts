@@ -17,4 +17,24 @@ export default class MatchService {
     }
     return matchs;
   }
+
+  public async getProgress(query: string): Promise<IMatch[]> {
+    this.getProgress = this.getProgress.bind(this);
+    if (query === 'true') {
+      return Matche.findAll({
+        where: { inProgress: true },
+        include: [
+          { model: Team, as: 'teamHome', attributes: { exclude: ['id'] } },
+          { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },
+        ],
+      });
+    }
+    return Matche.findAll({
+      where: { inProgress: false },
+      include: [
+        { model: Team, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },
+      ],
+    });
+  }
 }
