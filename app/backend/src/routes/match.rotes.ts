@@ -15,6 +15,6 @@ const matchController = new MatchController();
 router.get('/matches', matchController.getAll.bind(matchController));
 
 router.post('/matches', validateTokenMiddleware, matchController.insert.bind(matchController));
-//router.post('/matches', matchController.insert.bind(matchController));
+// router.post('/matches', matchController.insert.bind(matchController));
 
 export default router;
