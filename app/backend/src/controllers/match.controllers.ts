@@ -24,4 +24,11 @@ export default class MatchController {
     await this.matchService.stopMatch(id);
     return res.status(200).json({ message: 'Finished' });
   }
+
+  public async updateMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    await this.matchService.updateMatch(id, homeTeamGoals, awayTeamGoals);
+    return res.status(200).json({ message: 'Updated' });
+  }
 }

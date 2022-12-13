@@ -63,4 +63,12 @@ export default class MatchService {
       { where: { id } },
     );
   }
+
+  public async updateMatch(id: string, homeTeamGoals: number, awayTeamGoals: number) {
+    this.updateMatch = this.updateMatch.bind(this);
+    return Matche.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+  }
 }
