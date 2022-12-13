@@ -55,4 +55,12 @@ export default class MatchService {
     const addMatch = await Matche.create({ ...data, inProgress: true });
     return addMatch;
   }
+
+  public async stopMatch(id: string) {
+    this.stopMatch = this.stopMatch.bind(this);
+    return Matche.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+  }
 }
