@@ -40,6 +40,9 @@ export default class MatchService {
 
   public async insert(data: IMatch): Promise<IMatch> {
     this.insert = this.insert.bind(this);
+    if (data.awayTeam === data.homeTeam) {
+        throw new HttpException(422, 'It is not possible to create a match with two equal teams');
+    }
     const addMatch = await Matche.create({ ...data, inProgress: true });
     return addMatch;
   }
