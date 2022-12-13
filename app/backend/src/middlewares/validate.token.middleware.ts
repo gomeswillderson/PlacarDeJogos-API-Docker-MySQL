@@ -6,7 +6,7 @@ const validateTokenMiddleware = (req: Request, _res: Response, next: NextFunctio
   const { authorization } = req.headers;
 
   if (!authorization) {
-    throw new HttpException(401, 'Unauthorized');
+    throw new HttpException(401, 'Token must be a valid token');
   }
 
   jwt.verify(authorization, process.env.JWT_SECRET as string);
