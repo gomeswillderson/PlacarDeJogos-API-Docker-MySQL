@@ -40,9 +40,18 @@ export default class MatchService {
 
   public async insert(data: IMatch): Promise<IMatch> {
     this.insert = this.insert.bind(this);
+
+    const homeTeam = await Team.findByPk(data.homeTeam);
+    const awayTeam = await Team.findByPk(data.awayTeam);
+
+    if (!homeTeam || !awayTeam) {
+      throw new HttpException(404, 'There is no team with such id!');
+    }
+
     if (data.awayTeam === data.homeTeam) {
       throw new HttpException(422, 'It is not possible to create a match with two equal teams');
     }
+
     const addMatch = await Matche.create({ ...data, inProgress: true });
     return addMatch;
   }
