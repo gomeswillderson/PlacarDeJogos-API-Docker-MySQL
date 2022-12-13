@@ -12,9 +12,6 @@ export default class MatchService {
         { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },
       ],
     });
-    // if (!matchs) {
-    //   throw new HttpException(404, 'Sorry, Not Found :(');
-    // }
     return matchs;
   }
 
